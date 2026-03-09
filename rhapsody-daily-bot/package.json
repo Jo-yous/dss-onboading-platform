@@ -1,0 +1,26 @@
+{
+  "name": "rhapsody-daily-bot",
+  "version": "1.0.0",
+  "description": "Automated daily posting of Rhapsody of Realities devotional excerpts to X (Twitter).",
+  "main": "post-daily.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "post": "node post-daily.js",
+    "post-daily": "node post-daily.js"
+  },
+  "keywords": [
+    "rhapsody",
+    "devotional",
+    "twitter",
+    "bot"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "twitter-api-v2": "^1.17.2"
+  }
+}

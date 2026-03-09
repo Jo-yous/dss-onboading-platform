@@ -18,17 +18,6 @@
             line-height: 1.6;
         }
 
-        .contact-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            transition: opacity 0.3s ease;
-        }
-
-        .contact-links a:hover {
-            opacity: 0.8;
-        }
-
         header {
             background: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -69,7 +58,7 @@
             letter-spacing: 2px;
         }
 
-        /* Hero Section with Video */
+        /* Hero Section */
         .hero {
             position: relative;
             color: white;
@@ -115,17 +104,6 @@
             z-index: 1;
         }
 
-        .hero-overlay::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><circle cx="50" cy="50" r="1" fill="white" opacity="0.15"/></svg>');
-            opacity: 0.4;
-        }
-
         .hero-content {
             max-width: 900px;
             margin: 0 auto;
@@ -160,6 +138,8 @@
             font-size: 1.1em;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            border: none;
         }
 
         .cta-button:hover {
@@ -207,14 +187,12 @@
             font-weight: 500;
         }
 
-        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 80px 20px;
         }
 
-        /* Section Headers */
         .section-header {
             text-align: center;
             margin-bottom: 60px;
@@ -268,9 +246,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            filter: contrast(1.05) brightness(1.02);
         }
 
         .team-photo-overlay {
@@ -287,14 +262,12 @@
             font-size: 1.4em;
             margin-bottom: 8px;
             font-weight: 600;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .team-photo-overlay p {
             font-size: 1em;
             opacity: 0.95;
             line-height: 1.5;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         /* Roles Grid */
@@ -388,124 +361,217 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            image-rendering: -webkit-optimize-contrast;
-            filter: contrast(1.05) brightness(1.02);
         }
 
-        /* Signup Section */
-        .signup-section {
-            background: #f8f9fa;
-            padding: 80px 20px;
+        /* ===================== MODAL STYLES ===================== */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 10, 40, 0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
         }
 
-        .form-container {
-            max-width: 750px;
-            margin: 0 auto;
-            background: white;
-            padding: 55px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        .modal-backdrop.active {
+            opacity: 1;
+            pointer-events: all;
         }
 
-        .form-header {
-            text-align: center;
-            margin-bottom: 45px;
+        .modal {
+            background: #fff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 680px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.1);
+            transform: translateY(30px) scale(0.97);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+            opacity: 0;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
         }
 
-        .form-header h2 {
-            color: #1a1a1a;
-            font-size: 2.2em;
-            margin-bottom: 12px;
+        .modal-backdrop.active .modal {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        /* Prevent body scroll when modal open */
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 36px 40px 30px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            color: white;
+        }
+
+        .modal-header h2 {
+            font-size: 1.9em;
             font-weight: 700;
+            margin-bottom: 6px;
         }
 
-        .form-header p {
-            color: #666;
-            font-size: 1.05em;
+        .modal-header p {
+            opacity: 0.88;
+            font-size: 1em;
         }
 
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.35);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 36px 40px 40px;
+        }
+
+        /* Form styles inside modal */
         .form-group {
-            margin-bottom: 28px;
+            margin-bottom: 22px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
         }
 
         label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #1a1a1a;
             font-weight: 600;
-            font-size: 0.98em;
+            font-size: 0.9em;
+            letter-spacing: 0.3px;
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
+            padding: 13px 15px;
+            border: 2px solid #e8e8e8;
             border-radius: 10px;
-            background: white;
+            background: #fafafa;
             color: #1a1a1a;
-            font-size: 1em;
+            font-size: 0.97em;
             font-family: inherit;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
         }
 
         textarea {
             resize: vertical;
-            min-height: 130px;
+            min-height: 110px;
             line-height: 1.6;
         }
 
+        .interests-label {
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            display: block;
+        }
+
         .checkbox-group {
-            margin-top: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
         }
 
         .checkbox-label {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 15px;
             cursor: pointer;
-            padding: 12px;
+            padding: 10px 12px;
             border-radius: 8px;
-            transition: background 0.3s ease;
+            border: 2px solid #e8e8e8;
+            transition: all 0.2s ease;
+            background: #fafafa;
         }
 
         .checkbox-label:hover {
-            background: #f8f9fa;
+            border-color: #667eea;
+            background: #f0f2ff;
         }
 
         .checkbox-label input[type="checkbox"] {
-            width: 22px;
-            height: 22px;
-            margin-right: 15px;
-            margin-top: 2px;
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            margin-right: 10px;
+            margin-top: 1px;
             cursor: pointer;
             accent-color: #667eea;
+            padding: 0;
+            border: none;
+            background: none;
+            box-shadow: none;
+        }
+
+        .checkbox-label input[type="checkbox"]:focus {
+            box-shadow: none;
+            border: none;
         }
 
         .checkbox-label span {
-            font-size: 1em;
-            line-height: 1.5;
+            font-size: 0.88em;
+            line-height: 1.4;
+            color: #444;
         }
 
         .submit-button {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 1.15em;
+            font-size: 1.05em;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .submit-button:hover {
@@ -517,14 +583,13 @@
             transform: translateY(0);
         }
 
-        /* Messages */
         .message {
-            padding: 18px 22px;
+            padding: 14px 18px;
             border-radius: 10px;
-            margin-bottom: 28px;
+            margin-bottom: 22px;
             display: none;
             font-weight: 500;
-            font-size: 1.02em;
+            font-size: 0.97em;
         }
 
         .success-message {
@@ -537,6 +602,27 @@
             background: #f8d7da;
             border: 2px solid #f5c6cb;
             color: #721c24;
+        }
+
+        /* Also add apply now button in the why-join section */
+        .inline-apply-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 42px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05em;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 20px rgba(102,126,234,0.35);
+        }
+
+        .inline-apply-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(102,126,234,0.45);
         }
 
         /* Contact Section */
@@ -589,7 +675,6 @@
             text-decoration: underline;
         }
 
-        /* Footer */
         footer {
             background: #1a1a1a;
             color: white;
@@ -604,89 +689,124 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero {
-                min-height: 500px;
-                padding: 80px 20px;
-            }
-
-            .hero h1 {
-                font-size: 2.2em;
-            }
-
-            .hero p {
-                font-size: 1.15em;
-            }
-
-            .section-header h2 {
-                font-size: 2.2em;
-            }
-
-            .form-container {
-                padding: 35px 25px;
-            }
-
-            .top-bar .container {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .contact-links a {
-                margin-left: 0;
-                margin-right: 15px;
-            }
-
-            .why-join-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .team-photo {
-                height: 300px;
-            }
-
-            .why-join-image {
-                height: 350px;
-            }
+            .hero { min-height: 500px; padding: 80px 20px; }
+            .hero h1 { font-size: 2.2em; }
+            .hero p { font-size: 1.15em; }
+            .section-header h2 { font-size: 2.2em; }
+            .why-join-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .team-photo { height: 300px; }
+            .why-join-image { height: 350px; }
+            .modal-body { padding: 24px 22px 28px; }
+            .modal-header { padding: 28px 22px 22px; }
+            .form-row { grid-template-columns: 1fr; }
+            .checkbox-group { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.9em;
-            }
-
-            .hero p {
-                font-size: 1.05em;
-            }
-
-            .roles-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-number {
-                font-size: 2.3em;
-            }
+            .hero h1 { font-size: 1.9em; }
+            .roles-grid { grid-template-columns: 1fr; }
+            .stat-number { font-size: 2.3em; }
         }
     </style>
 </head>
 <body>
+
+    <!-- ===================== MODAL ===================== -->
+    <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+                <h2 id="modalTitle">Application Form</h2>
+                <p>Join our Digital Saturation Tech Team — complete the form below</p>
+            </div>
+
+            <div class="modal-body">
+                <div class="success-message message" id="successMessage">
+                    ✓ Thank you! We'll review your application and be in touch soon.
+                </div>
+                <div class="error-message message" id="errorMessage">
+                    ✕ There was an error submitting your application. Please try again.
+                </div>
+
+                <form id="signupForm" action="process_signup.php" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="you@example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+234 XXX XXX XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location (City, Country) *</label>
+                            <input type="text" id="location" name="location" required placeholder="Lagos, Nigeria">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="interests-label">Areas of Interest (Select all that apply) *</span>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interests[]" value="tech_tools">
+                                <span>⚙️ Tech &amp; Tools</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interests[]" value="content_distribution">
+                                <span>📢 Content Distribution</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interests[]" value="data_reports">
+                                <span>📊 Data &amp; Analytics</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interests[]" value="training_support">
+                                <span>💡 Training &amp; Support</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Relevant Skills &amp; Experience</label>
+                        <textarea id="experience" name="experience" placeholder="Share your skills, experience, and passion for joining our mission..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="availability">Availability (hours per week)</label>
+                        <select id="availability" name="availability">
+                            <option value="">Select your availability...</option>
+                            <option value="1-5">1–5 hours</option>
+                            <option value="5-10">5–10 hours</option>
+                            <option value="10-20">10–20 hours</option>
+                            <option value="20+">20+ hours</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-button">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- ===================== END MODAL ===================== -->
+
     <section class="hero">
-        <!-- Video Background -->
         <video autoplay muted loop playsinline class="hero-video">
             <source src="CROWN.mp4" type="video/mp4">
         </video>
-        
-        <!-- Image Fallback Background -->
         <img src="rut-miit-RbC4-8CdbVQ-unsplash.jpg" alt="Team at work" class="hero-image-fallback">
-        
         <div class="hero-overlay"></div>
-        
         <div class="hero-content">
             <h1>Join Our Digital Saturation Team</h1>
             <p>Be part of a revolutionary movement spreading the Rhapsody of Realities daily to millions around the world through innovative digital solutions.</p>
-            <a href="#signup" class="cta-button">Apply Now</a>
+            <button class="cta-button open-modal">Apply Now</button>
         </div>
     </section>
 
@@ -718,21 +838,21 @@
         </div>
         <div class="team-grid">
             <div class="team-photo">
-                <img src="helena-lopes-2MBtXGq4Pfs-unsplash.jpg" alt="Team Collaboration">
+                <img src="collaborative.jpg" alt="Team Collaboration">
                 <div class="team-photo-overlay">
                     <h3>Collaborative Culture</h3>
                     <p>Working together to spread the Word</p>
                 </div>
             </div>
             <div class="team-photo">
-                <img src="priscilla-du-preez-XkKCui44iM0-unsplash.jpg" alt="Team Innovation">
+                <img src="innovation.jpg" alt="Team Innovation">
                 <div class="team-photo-overlay">
                     <h3>Innovation & Creativity</h3>
-                    <p>Finding new ways to reach souls</p>
+                    <p>Finding new ways to reach the last souls</p>
                 </div>
             </div>
             <div class="team-photo">
-                <img src="marvin-meyer-SYTO3xs06fU-unsplash.jpg" alt="Tech Team">
+                <img src="tech.jpg" alt="Tech Team">
                 <div class="team-photo-overlay">
                     <h3>Tech-Driven Solutions</h3>
                     <p>Building platforms that make a difference</p>
@@ -746,7 +866,6 @@
             <h2>Available Opportunities</h2>
             <p>Choose the role that aligns with your skills and passion for spreading God's Word digitally.</p>
         </div>
-
         <div class="roles-grid">
             <div class="role-card">
                 <div class="role-icon">⚙️</div>
@@ -766,14 +885,14 @@
             <div class="role-card">
                 <div class="role-icon">💡</div>
                 <h3>Training & Support</h3>
-                <p>Educate and empower volunteers worldwide with the knowledge and tools needed for digital ministry.</p>
+                <p>Get educated with the knowledge and tools needed for digital saturation.</p>
             </div>
         </div>
     </div>
 
     <section class="why-join-section">
         <div class="section-header">
-            <h2>Why Join DSS?</h2>
+            <h2>Why Join DSS Tech Unit?</h2>
             <p>Become part of something bigger than yourself</p>
         </div>
         <div class="why-join-grid">
@@ -784,91 +903,13 @@
                     <li>Collaborate with passionate, mission-driven team members</li>
                     <li>Flexible remote work opportunities</li>
                     <li>Continuous learning and skill development</li>
-                    <li>Be part of a global movement</li>
+                    <li>Be part of a global movement in search for the lost soul</li>
                 </ul>
+                <button class="inline-apply-btn open-modal">Apply Now →</button>
             </div>
             <div class="why-join-image">
-                <img src="annie-spratt-QckxruozjRg-unsplash.jpg" alt="Teamwork" loading="lazy">
+                <img src="whydsd.jpg" alt="Teamwork" loading="lazy">
             </div>
-        </div>
-    </section>
-
-    <section class="signup-section" id="signup">
-        <div class="form-container">
-            <div class="form-header">
-                <h2>Application Form</h2>
-                <p>Complete the form below to join our team</p>
-            </div>
-            
-            <div class="success-message message" id="successMessage">
-                ✓ Thank you for your application! We'll review your submission and contact you soon.
-            </div>
-            
-            <div class="error-message message" id="errorMessage">
-                ✕ There was an error submitting your application. Please try again.
-            </div>
-
-            <form id="signupForm" action="process_signup.php" method="POST">
-                <div class="form-group">
-                    <label for="fullName">Full Name *</label>
-                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="+234 XXX XXX XXXX">
-                </div>
-
-                <div class="form-group">
-                    <label for="location">Location (City, Country) *</label>
-                    <input type="text" id="location" name="location" required placeholder="e.g., Lagos, Nigeria">
-                </div>
-
-                <div class="form-group">
-                    <label>Areas of Interest (Select all that apply) *</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests[]" value="tech_tools">
-                            <span>Tech & Tools - Create & Manage Digital Systems</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests[]" value="content_distribution">
-                            <span>Content Distribution - Share God's Word Online</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests[]" value="data_reports">
-                            <span>Data & Analytics - Track & Analyze Engagement</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="interests[]" value="training_support">
-                            <span>Training & Support - Teach & Help Volunteers</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="experience">Relevant Skills & Experience</label>
-                    <textarea id="experience" name="experience" placeholder="Share your relevant skills, experience, and why you're passionate about joining our mission..."></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="availability">Availability (hours per week)</label>
-                    <select id="availability" name="availability">
-                        <option value="">Select your availability...</option>
-                        <option value="1-5">1-5 hours</option>
-                        <option value="5-10">5-10 hours</option>
-                        <option value="10-20">10-20 hours</option>
-                        <option value="20+">20+ hours</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="submit-button">Submit Application</button>
-            </form>
         </div>
     </section>
 
@@ -877,12 +918,11 @@
             <h2>Get in Touch</h2>
             <p>Have questions? We're here to help</p>
         </div>
-        
         <div class="contact-grid">
             <div class="contact-card">
                 <div class="contact-icon">📧</div>
                 <h3>Email Us</h3>
-                <a href="/cdn-cgi/l/email-protection#7811161e17381c111f110c19140b190c0d0a190c111716561b1715"><span class="__cf_email__" data-cfemail="b8d1d6ded7f8dcd1dfd1ccd9d4cbd9cccdcad9ccd1d7d696dbd7d5">[email&#160;protected]</span></a>
+                <a href="mailto:team@digitalsaturation.org">team@digitalsaturation.org</a>
             </div>
             <div class="contact-card">
                 <div class="contact-icon">📱</div>
@@ -891,8 +931,8 @@
             </div>
             <div class="contact-card">
                 <div class="contact-icon">🌐</div>
-                <h3>Visit Website</h3>
-                <a href="http://www.digitalsaturation.org" target="_blank">www.digitalsaturation.org</a>
+                <h3>Kingschat</h3>
+                <a href="https://kingschat.online/user/dsdcommunications" target="_blank">@dsdcommunications</a>
             </div>
         </div>
     </section>
@@ -901,21 +941,54 @@
         <p>&copy; 2024 DSS Digital Saturation - Technologies Unit. All rights reserved.</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // ---- Modal Logic ----
+        const backdrop = document.getElementById('modalBackdrop');
+        const modalCloseBtn = document.getElementById('modalClose');
+        const openBtns = document.querySelectorAll('.open-modal');
+
+        function openModal() {
+            backdrop.classList.add('active');
+            document.body.classList.add('modal-open');
+            // Focus first input
+            setTimeout(() => {
+                document.getElementById('fullName').focus();
+            }, 350);
+        }
+
+        function closeModal() {
+            backdrop.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        openBtns.forEach(btn => btn.addEventListener('click', openModal));
+        modalCloseBtn.addEventListener('click', closeModal);
+
+        // Close on backdrop click (outside modal box)
+        backdrop.addEventListener('click', function(e) {
+            if (e.target === backdrop) closeModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && backdrop.classList.contains('active')) closeModal();
+        });
+
+        // ---- Form Submission ----
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Basic validation for checkboxes
+
             const checkboxes = document.querySelectorAll('input[name="interests[]"]:checked');
             if (checkboxes.length === 0) {
-                document.getElementById('errorMessage').textContent = 'Please select at least one area of interest.';
-                document.getElementById('errorMessage').style.display = 'block';
+                const errMsg = document.getElementById('errorMessage');
+                errMsg.textContent = 'Please select at least one area of interest.';
+                errMsg.style.display = 'block';
                 document.getElementById('successMessage').style.display = 'none';
                 return;
             }
-            
+
             const formData = new FormData(this);
-            
+
             fetch('process_signup.php', {
                 method: 'POST',
                 body: formData
@@ -926,31 +999,21 @@
                     document.getElementById('successMessage').style.display = 'block';
                     document.getElementById('errorMessage').style.display = 'none';
                     document.getElementById('signupForm').reset();
-                    
-                    // Scroll to success message
-                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
                     setTimeout(() => {
                         document.getElementById('successMessage').style.display = 'none';
-                    }, 7000);
+                        closeModal();
+                    }, 5000);
                 } else {
                     document.getElementById('errorMessage').style.display = 'block';
                     document.getElementById('successMessage').style.display = 'none';
                     document.getElementById('errorMessage').textContent = data.message || 'There was an error submitting your application.';
                 }
             })
-            
-            .catch(error => {
+            .catch(() => {
                 document.getElementById('errorMessage').style.display = 'block';
                 document.getElementById('successMessage').style.display = 'none';
                 document.getElementById('errorMessage').textContent = 'Network error. Please check your connection and try again.';
             });
-        });
-
-        // Smooth scroll for CTA button
-        document.querySelector('.cta-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector('#signup').scrollIntoView({ behavior: 'smooth' });
         });
     </script>
 </body>
