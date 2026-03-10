@@ -1,0 +1,1142 @@
+<?php
+session_start();
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join DSS Digital Saturation Team | Careers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            opacity: 0.8;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 0.85em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section with Video */
+        .hero {
+            position: relative;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            object-fit: cover;
+        }
+
+        .hero-image-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%);
+            z-index: 1;
+        }
+
+        .hero-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><circle cx="50" cy="50" r="1" fill="white" opacity="0.15"/></svg>');
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.35em;
+            margin-bottom: 35px;
+            line-height: 1.6;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #f8f9fa;
+            padding: 70px 20px;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.05em;
+            font-weight: 500;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8em;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.15em;
+            color: #666;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Team Photos Section */
+        .team-showcase {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .team-grid {
+            max-width: 1200px;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .team-photo {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 350px;
+        }
+
+        .team-photo:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            filter: contrast(1.05) brightness(1.02);
+        }
+
+        .team-photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+            padding: 30px 25px;
+            color: white;
+        }
+
+        .team-photo-overlay h3 {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .team-photo-overlay p {
+            font-size: 1em;
+            opacity: 0.95;
+            line-height: 1.5;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Roles Grid */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .role-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .role-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+
+        .role-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .role-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .role-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+
+        /* Why Join Section */
+        .why-join-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 20px;
+        }
+
+        .why-join-grid {
+            max-width: 1200px;
+            margin: 50px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .why-join-content ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .why-join-content li {
+            padding: 18px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .why-join-content li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+
+        .why-join-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+            height: 450px;
+        }
+
+        .why-join-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            filter: contrast(1.05) brightness(1.02);
+        }
+
+        /* Signup Section (kept for direct link access) */
+        .signup-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+        }
+
+        .form-container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: white;
+            padding: 55px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .form-header h2 {
+            color: #1a1a1a;
+            font-size: 2.2em;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 1.05em;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 0.98em;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            color: #1a1a1a;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 130px;
+            line-height: 1.6;
+        }
+
+        .checkbox-group {
+            margin-top: 15px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .checkbox-label:hover {
+            background: #f8f9fa;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            margin-right: 15px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checkbox-label span {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.15em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        /* Messages */
+        .message {
+            padding: 18px 22px;
+            border-radius: 10px;
+            margin-bottom: 28px;
+            display: none;
+            font-weight: 500;
+            font-size: 1.02em;
+        }
+
+        .success-message {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 950px;
+            margin: 45px auto 0;
+        }
+
+        .contact-card {
+            padding: 35px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-icon {
+            font-size: 2.8em;
+            margin-bottom: 18px;
+        }
+
+        .contact-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-size: 1.15em;
+            font-weight: 600;
+        }
+
+        .contact-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.85;
+            font-size: 1.02em;
+        }
+
+        /* ===================== MODAL STYLES ===================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 10, 40, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 680px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+            transform: translateY(30px) scale(0.97);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            scrollbar-width: thin;
+            scrollbar-color: #667eea #f0f0f0;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal::-webkit-scrollbar {
+            width: 6px;
+        }
+        .modal::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+        .modal::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 10px;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 35px 45px 30px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .modal-header h2 {
+            color: white;
+            font-size: 1.9em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .modal-header p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1em;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.3em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.35);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 35px 45px 45px;
+        }
+
+        .modal .message {
+            margin-bottom: 22px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 500px;
+                padding: 80px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.15em;
+            }
+
+            .section-header h2 {
+                font-size: 2.2em;
+            }
+
+            .form-container {
+                padding: 35px 25px;
+            }
+
+            .top-bar .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .contact-links a {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+
+            .why-join-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-photo {
+                height: 300px;
+            }
+
+            .why-join-image {
+                height: 350px;
+            }
+
+            .modal-header {
+                padding: 28px 25px 22px;
+            }
+
+            .modal-header h2 {
+                font-size: 1.5em;
+            }
+
+            .modal-body {
+                padding: 25px 22px 35px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.9em;
+            }
+
+            .hero p {
+                font-size: 1.05em;
+            }
+
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 2.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== APPLICATION MODAL ===================== -->
+    <div class="modal-overlay" id="applicationModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" id="modalClose" aria-label="Close modal">✕</button>
+                <h2 id="modalTitle">Application Form</h2>
+                <p>Complete the form below to join our team</p>
+            </div>
+            <div class="modal-body">
+
+                <div class="success-message message" id="successMessage">
+                    ✓ Thank you for your application! We'll review your submission and contact you soon.
+                </div>
+                <div class="error-message message" id="errorMessage">
+                    ✕ There was an error submitting your application. Please try again.
+                </div>
+
+                <form id="signupForm" action="process_signup.php" method="POST">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+234 XXX XXX XXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location (City, Country) *</label>
+                        <input type="text" id="location" name="location" required placeholder="e.g., Lagos, Nigeria">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Areas of Interest (Select all that apply) *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interests[]" value="tech_tools">
+                                <span>Tech & Tools - Create & Manage Digital Systems</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interests[]" value="content_distribution">
+                                <span>Content Distribution - Share God's Word Online</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interests[]" value="data_reports">
+                                <span>Data & Analytics - Track & Analyze Engagement</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interests[]" value="training_support">
+                                <span>Training & Support - Teach & Help Volunteers</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Relevant Skills & Experience</label>
+                        <textarea id="experience" name="experience" placeholder="Share your relevant skills, experience, and why you're passionate about joining our mission..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="availability">Availability (hours per week)</label>
+                        <select id="availability" name="availability">
+                            <option value="">Select your availability...</option>
+                            <option value="1-5">1-5 hours</option>
+                            <option value="5-10">5-10 hours</option>
+                            <option value="10-20">10-20 hours</option>
+                            <option value="20+">20+ hours</option>
+                            <option value="Full-Time">Full-Time</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-button">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="CROWN.mp4" type="video/mp4">
+        </video>
+        <img src="rut-miit-RbC4-8CdbVQ-unsplash.jpg" alt="Team at work" class="hero-image-fallback">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Join Our Digital Saturation Tools Team</h1>
+            <p>Be part of a revolutionary movement spreading the Rhapsody of Realities daily to millions around the world through innovative digital solutions.</p> 
+            <button class="cta-button" id="applyNowBtn">Apply Now</button>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Countries Reached</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1M+</div>
+                <div class="stat-label">Daily Impressions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Global Operations</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-showcase">
+        <div class="section-header">
+            <h2>Meet Our Team</h2>
+            <p>See the passionate people making digital ministry happen every day</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-photo">
+                <img src="collaborative.jpg" alt="Team Collaboration">
+                <div class="team-photo-overlay">
+                    <h3>Collaborative Culture</h3>
+                    <p>Working together to spread the Word</p>
+                </div>
+            </div>
+            <div class="team-photo">
+                <img src="innovation.jpg" alt="Team Innovation">
+                <div class="team-photo-overlay">
+                    <h3>Innovation & Creativity</h3>
+                    <p>Finding new ways to reach souls</p>
+                </div>
+            </div>
+            <div class="team-photo">
+                <img src="tech.jpg" alt="Tech Team">
+                <div class="team-photo-overlay">
+                    <h3>Tech-Driven Solutions</h3>
+                    <p>Building platforms that make a difference</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section-header">
+            <h2>Available Opportunities</h2>
+            <p>Choose the role that aligns with your skills and passion for spreading God's Word digitally.</p>
+        </div>
+        <div class="roles-grid">
+            <div class="role-card">
+                <div class="role-icon">⚙️</div>
+                <h3>Tech & Tools</h3>
+                <p>Design, develop, and manage cutting-edge digital systems and platforms that power our global mission.</p>
+            </div>
+            <div class="role-card">
+                <div class="role-icon">📢</div>
+                <h3>Content Distribution</h3>
+                <p>Strategically distribute and amplify God's Word across multiple digital channels and social platforms.</p>
+            </div>
+            <div class="role-card">
+                <div class="role-icon">📊</div>
+                <h3>Data & Analytics</h3>
+                <p>Track engagement metrics, analyze impact data, and generate insights to optimize our reach.</p>
+            </div>
+            <div class="role-card">
+                <div class="role-icon">💡</div>
+                <h3>Training & Support</h3>
+                <p>Educate and empower volunteers worldwide with the knowledge and tools needed for digital ministry.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="why-join-section">
+        <div class="section-header">
+            <h2>Why Join DSS?</h2>
+            <p>Become part of something bigger than yourself</p>
+        </div>
+        <div class="why-join-grid">
+            <div class="why-join-content">
+                <ul>
+                    <li>Make a real impact in spreading God's Word globally</li>
+                    <li>Work with cutting-edge digital technologies</li>
+                    <li>Collaborate with passionate, mission-driven team members</li>
+                    <li>Flexible remote work opportunities</li>
+                    <li>Continuous learning and skill development</li>
+                    <li>Be part of a global movement</li>
+                </ul>
+            </div>
+            <div class="why-join-image">
+                <img src="whydsd.jpg" alt="Teamwork" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="section-header">
+            <h2>Get in Touch</h2>
+            <p>Have questions? We're here to help</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>Email Us</h3>
+                <a href="mailto:info@digitalsaturation.org">info@digitalsaturation.org</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📱</div>
+                <h3>Call Us</h3>
+                <a href="tel:+2348104265077">+234 9026939814</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">🌐</div>
+                <h3>Visit Website</h3>
+                <a href="http://www.digitalsaturation.org" target="_blank">www.digitalsaturation.org</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 DSS Digital Saturation - Technologies Unit. All rights reserved.</p>
+    </footer>
+
+ <script>
+    const modal = document.getElementById('applicationModal');
+    const applyBtn = document.getElementById('applyNowBtn');
+    const closeBtn = document.getElementById('modalClose');
+
+    function openModal() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    applyBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const checkboxes = document.querySelectorAll('input[name="interests[]"]:checked');
+        if (checkboxes.length === 0) {
+            document.getElementById('errorMessage').textContent = 'Please select at least one area of interest.';
+            document.getElementById('errorMessage').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+            return;
+        }
+
+        // Disable button to prevent double submit
+        const submitBtn = document.querySelector('.submit-button');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        const formData = new FormData(this);
+
+        fetch('get_csrf_token.php')
+            .then(response => response.json())
+            .then(tokenData => {
+                formData.set('csrf_token', tokenData.token);
+                return fetch('process_signup.php', {
+                    method: 'POST',
+                    body: formData
+                });
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Replace entire modal content with success screen
+                    document.querySelector('.modal-body').innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px;">
+                            <div style="font-size: 4em; margin-bottom: 20px;">🎉</div>
+                            <h3 style="font-size: 1.8em; color: #1a1a1a; margin-bottom: 15px; font-weight: 700;">Application Submitted!</h3>
+                            <p style="color: #555; font-size: 1.1em; line-height: 1.7; margin-bottom: 10px;">
+                                Thank you for applying to join the <strong>DSS Digital Saturation Team</strong>.
+                            </p>
+                            <p style="color: #555; font-size: 1.05em; line-height: 1.7; margin-bottom: 35px;">
+                                We have received your application and will be in touch with you shortly. We're excited about your interest in spreading God's Word digitally! 🙏
+                            </p>
+                            <div style="background: #f0f4ff; border-radius: 12px; padding: 18px 25px; margin-bottom: 35px; color: #667eea; font-weight: 600; font-size: 1em;">
+                                Redirecting you to the home page in <span id="countdown">5</span> seconds...
+                            </div>
+                            <button onclick="window.location.href='index.php'" style="
+                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                color: white;
+                                border: none;
+                                padding: 15px 40px;
+                                border-radius: 50px;
+                                font-size: 1.05em;
+                                font-weight: 700;
+                                cursor: pointer;
+                                letter-spacing: 1px;
+                            ">Go to Home Page Now</button>
+                        </div>
+                    `;
+
+                    // Countdown and redirect
+                    let seconds = 5;
+                    const countdownEl = document.getElementById('countdown');
+                    const timer = setInterval(() => {
+                        seconds--;
+                        if (countdownEl) countdownEl.textContent = seconds;
+                        if (seconds <= 0) {
+                            clearInterval(timer);
+                            window.location.href = 'index.php';
+                        }
+                    }, 1000);
+
+                } else {
+                    document.getElementById('errorMessage').style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'none';
+                    document.getElementById('errorMessage').textContent = data.message || 'There was an error submitting your application.';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Application';
+                }
+            })
+            .catch(() => {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('errorMessage').textContent = 'Network error. Please check your connection and try again.';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+            });
+    });
+</script>
+</body>
+</html>
