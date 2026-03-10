@@ -1,0 +1,20 @@
+# Local config (DB credentials)
+config.local.php
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Logs
+*.log
+logs/
+
+# Temp / uploads (if you add any)
+tmp/
+temp/
+uploads/

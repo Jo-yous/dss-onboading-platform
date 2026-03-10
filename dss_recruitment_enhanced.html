@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join DSS Digital Saturation Team | Careers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            opacity: 0.8;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 0.85em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section with Video */
+        .hero {
+            position: relative;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            object-fit: cover;
+        }
+
+        .hero-image-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%);
+            z-index: 1;
+        }
+
+        .hero-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><circle cx="50" cy="50" r="1" fill="white" opacity="0.15"/></svg>');
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.35em;
+            margin-bottom: 35px;
+            line-height: 1.6;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            border: 2px solid transparent;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            background: #667eea;
+            color: white;
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px) scale(0.99);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #f8f9fa;
+            padding: 70px 20px;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.05em;
+            font-weight: 500;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8em;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.15em;
+            color: #666;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Team Photos Section */
+        .team-showcase {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .team-grid {
+            max-width: 1200px;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .team-photo {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 350px;
+        }
+
+        .team-photo:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            filter: contrast(1.05) brightness(1.02);
+        }
+
+        .team-photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+            padding: 30px 25px;
+            color: white;
+        }
+
+        .team-photo-overlay h3 {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .team-photo-overlay p {
+            font-size: 1em;
+            opacity: 0.95;
+            line-height: 1.5;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Roles Grid */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .role-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .role-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+
+        .role-icon {
+            margin-bottom: 20px;
+            color: #667eea;
+            line-height: 0;
+            animation: icon-float 3s ease-in-out infinite;
+        }
+
+        .role-icon svg {
+            width: 64px;
+            height: 64px;
+            display: block;
+        }
+
+        .role-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .role-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+
+        /* Why Join Section */
+        .why-join-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 20px;
+        }
+
+        .why-join-grid {
+            max-width: 1200px;
+            margin: 50px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .why-join-content ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .why-join-content li {
+            padding: 18px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1em;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .why-join-content li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23667eea" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+
+        .why-join-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+            height: 450px;
+        }
+
+        .why-join-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            filter: contrast(1.05) brightness(1.02);
+        }
+
+        /* Signup Section */
+        .signup-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+        }
+
+        .form-container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: white;
+            padding: 55px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .form-header h2 {
+            color: #1a1a1a;
+            font-size: 2.2em;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 1.05em;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 0.98em;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            color: #1a1a1a;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 130px;
+            line-height: 1.6;
+        }
+
+        .checkbox-group {
+            margin-top: 15px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .checkbox-label:hover {
+            background: #f8f9fa;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            margin-right: 15px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checkbox-label span {
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 100% 100%;
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-size: 1.15em;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 10px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(102, 126, 234, 0.55);
+            background: linear-gradient(135deg, #5a6fd6 0%, #6a4190 100%);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Messages */
+        .message {
+            padding: 18px 22px;
+            border-radius: 10px;
+            margin-bottom: 28px;
+            display: none;
+            font-weight: 500;
+            font-size: 1.02em;
+        }
+
+        .success-message {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .message-icon {
+            display: inline-flex;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .message-icon svg {
+            flex-shrink: 0;
+        }
+
+        .message-icon-error svg {
+            stroke: #721c24;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: white;
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 950px;
+            margin: 45px auto 0;
+        }
+
+        .contact-card {
+            padding: 35px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-icon {
+            margin-bottom: 18px;
+            color: #667eea;
+            line-height: 0;
+            animation: icon-float 3s ease-in-out infinite;
+        }
+
+        .contact-icon svg {
+            width: 48px;
+            height: 48px;
+            display: block;
+        }
+
+        @keyframes icon-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .contact-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-size: 1.15em;
+            font-weight: 600;
+        }
+
+        .contact-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.85;
+            font-size: 1.02em;
+        }
+
+        /* Responsive - tablet and below */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 1.6em;
+            }
+
+            .tagline {
+                font-size: 0.75em;
+            }
+
+            .hero {
+                min-height: 500px;
+                padding: 80px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.15em;
+            }
+
+            .cta-button {
+                padding: 16px 36px;
+                font-size: 1em;
+            }
+
+            .stats-section {
+                padding: 50px 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .stat-card {
+                padding: 28px 20px;
+            }
+
+            .stat-number {
+                font-size: 2.4em;
+            }
+
+            .container {
+                padding: 50px 20px;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .section-header h2 {
+                font-size: 2.2em;
+            }
+
+            .section-header p {
+                font-size: 1.05em;
+            }
+
+            .team-showcase {
+                padding: 50px 20px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .team-photo {
+                height: 300px;
+            }
+
+            .roles-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .role-card {
+                padding: 32px 24px;
+            }
+
+            .role-icon svg {
+                width: 56px;
+                height: 56px;
+            }
+
+            .why-join-section {
+                padding: 50px 20px;
+            }
+
+            .why-join-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .why-join-content li {
+                padding: 14px 0 14px 36px;
+                font-size: 1em;
+            }
+
+            .why-join-image {
+                height: 350px;
+            }
+
+            .signup-section {
+                padding: 50px 20px;
+            }
+
+            .form-container {
+                padding: 35px 25px;
+            }
+
+            .form-group {
+                margin-bottom: 22px;
+            }
+
+            input, select, textarea {
+                padding: 14px;
+                font-size: 16px;
+            }
+
+            .submit-button {
+                padding: 16px;
+                font-size: 1.05em;
+                min-height: 48px;
+            }
+
+            .contact-section {
+                padding: 50px 20px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-card {
+                padding: 28px 24px;
+            }
+
+            .contact-icon svg {
+                width: 42px;
+                height: 42px;
+            }
+
+            footer {
+                padding: 28px 20px;
+            }
+
+            footer p {
+                font-size: 0.95em;
+            }
+
+            .top-bar .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .contact-links a {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+        }
+
+        /* Responsive - mobile */
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 16px;
+            }
+
+            .logo {
+                font-size: 1.45em;
+            }
+
+            .tagline {
+                letter-spacing: 1px;
+            }
+
+            .hero {
+                min-height: 420px;
+                padding: 60px 16px;
+            }
+
+            .hero h1 {
+                font-size: 1.85em;
+                margin-bottom: 18px;
+            }
+
+            .hero p {
+                font-size: 1.05em;
+                margin-bottom: 28px;
+            }
+
+            .cta-button {
+                padding: 14px 28px;
+                font-size: 0.98em;
+                border-radius: 40px;
+            }
+
+            .stats-section {
+                padding: 40px 16px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .stat-card {
+                padding: 24px 18px;
+            }
+
+            .stat-number {
+                font-size: 2.1em;
+            }
+
+            .stat-label {
+                font-size: 0.98em;
+            }
+
+            .container {
+                padding: 40px 16px;
+            }
+
+            .section-header {
+                margin-bottom: 32px;
+            }
+
+            .section-header h2 {
+                font-size: 1.85em;
+            }
+
+            .section-header p {
+                font-size: 0.98em;
+            }
+
+            .team-showcase {
+                padding: 40px 16px;
+            }
+
+            .team-photo {
+                height: 260px;
+            }
+
+            .role-card {
+                padding: 28px 20px;
+            }
+
+            .role-card h3 {
+                font-size: 1.3em;
+            }
+
+            .role-icon svg {
+                width: 48px;
+                height: 48px;
+            }
+
+            .why-join-section {
+                padding: 40px 16px;
+            }
+
+            .why-join-content li {
+                padding: 12px 0 12px 32px;
+                font-size: 0.98em;
+            }
+
+            .why-join-image {
+                height: 280px;
+            }
+
+            .signup-section {
+                padding: 40px 16px;
+            }
+
+            .form-container {
+                padding: 24px 18px;
+                border-radius: 12px;
+            }
+
+            .form-header h2 {
+                font-size: 1.75em;
+            }
+
+            .form-header p {
+                font-size: 0.98em;
+            }
+
+            label {
+                font-size: 0.95em;
+            }
+
+            input, select, textarea {
+                padding: 12px 14px;
+                min-height: 44px;
+            }
+
+            textarea {
+                min-height: 100px;
+            }
+
+            .checkbox-label {
+                padding: 10px 8px;
+            }
+
+            .checkbox-label input[type="checkbox"] {
+                width: 20px;
+                height: 20px;
+            }
+
+            .submit-button {
+                padding: 14px;
+                font-size: 1em;
+                min-height: 48px;
+                letter-spacing: 1px;
+            }
+
+            .message {
+                padding: 14px 18px;
+                font-size: 0.98em;
+            }
+
+            .contact-section {
+                padding: 40px 16px;
+            }
+
+            .contact-card {
+                padding: 24px 20px;
+            }
+
+            .contact-card h3 {
+                font-size: 1.05em;
+            }
+
+            .contact-icon svg {
+                width: 40px;
+                height: 40px;
+            }
+
+            footer {
+                padding: 24px 16px;
+            }
+
+            footer p {
+                font-size: 0.9em;
+            }
+        }
+
+        /* Touch-friendly and very small screens */
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.65em;
+            }
+
+            .cta-button {
+                padding: 12px 24px;
+            }
+
+            .stat-number {
+                font-size: 1.9em;
+            }
+
+            .section-header h2 {
+                font-size: 1.65em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="CROWN.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Image Fallback Background -->
+        <img src="rut-miit-RbC4-8CdbVQ-unsplash.jpg" alt="Team at work" class="hero-image-fallback">
+        
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1>Join Our Digital Saturation Team</h1>
+            <p>Be part of a revolutionary movement spreading the Rhapsody of Realities daily to millions around the world through innovative digital solutions.</p>
+            <a href="#signup" class="cta-button">Apply Now</a>
+        </div>
+    </section>
+
+    <section class="stats-section" id="statsSection">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-target="100" data-suffix="+">95</div>
+                <div class="stat-label">Countries Reached</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number stat-number--million" data-target="1" data-suffix="M+">0</div>
+                <div class="stat-label">Daily Impressions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="50" data-suffix="+">45</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="24" data-suffix="/7">19</div>
+                <div class="stat-label">Global Operations</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-showcase">
+        <div class="section-header">
+            <h2>Meet Our Team</h2>
+            <p>See the passionate people making digital ministry happen every day</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-photo">
+                <img src="helena-lopes-2MBtXGq4Pfs-unsplash.jpg" alt="Team Collaboration">
+                <div class="team-photo-overlay">
+                    <h3>Collaborative Culture</h3>
+                    <p>Working together to spread the Word</p>
+                </div>
+            </div>
+            <div class="team-photo">
+                <img src="priscilla-du-preez-XkKCui44iM0-unsplash.jpg" alt="Team Innovation">
+                <div class="team-photo-overlay">
+                    <h3>Innovation & Creativity</h3>
+                    <p>Finding new ways to reach souls</p>
+                </div>
+            </div>
+            <div class="team-photo">
+                <img src="marvin-meyer-SYTO3xs06fU-unsplash.jpg" alt="Tech Team">
+                <div class="team-photo-overlay">
+                    <h3>Tech-Driven Solutions</h3>
+                    <p>Building platforms that make a difference</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section-header">
+            <h2>Available Opportunities</h2>
+            <p>Choose the role that aligns with your skills and passion for spreading God's Word digitally.</p>
+        </div>
+
+        <div class="roles-grid">
+            <div class="role-card">
+                <div class="role-icon" aria-hidden="true"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+                <h3>Tech & Tools</h3>
+                <p>Design, develop, and manage cutting-edge digital systems and platforms that power our global mission.</p>
+            </div>
+            <div class="role-card">
+                <div class="role-icon" aria-hidden="true"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
+                <h3>Content Distribution</h3>
+                <p>Strategically distribute and amplify God's Word across multiple digital channels and social platforms.</p>
+            </div>
+            <div class="role-card">
+                <div class="role-icon" aria-hidden="true"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+                <h3>Data & Analytics</h3>
+                <p>Track engagement metrics, analyze impact data, and generate insights to optimize our reach.</p>
+            </div>
+            <div class="role-card">
+                <div class="role-icon" aria-hidden="true"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></div>
+                <h3>Training & Support</h3>
+                <p>Educate and empower volunteers worldwide with the knowledge and tools needed for digital ministry.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="why-join-section">
+        <div class="section-header">
+            <h2>Why Join DSS?</h2>
+            <p>Become part of something bigger than yourself</p>
+        </div>
+        <div class="why-join-grid">
+            <div class="why-join-content">
+                <ul>
+                    <li>Make a real impact in spreading God's Word globally</li>
+                    <li>Work with cutting-edge digital technologies</li>
+                    <li>Collaborate with passionate, mission-driven team members</li>
+                    <li>Flexible remote work opportunities</li>
+                    <li>Continuous learning and skill development</li>
+                    <li>Be part of a global movement</li>
+                </ul>
+            </div>
+            <div class="why-join-image">
+                <img src="annie-spratt-QckxruozjRg-unsplash.jpg" alt="Teamwork" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section class="signup-section" id="signup">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Application Form</h2>
+                <p>Complete the form below to join our team</p>
+            </div>
+            
+            <div class="success-message message" id="successMessage">
+                <span class="message-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+                Thank you for your application! We'll review your submission and contact you soon.
+            </div>
+            
+            <div class="error-message message" id="errorMessage">
+                <span class="message-icon message-icon-error" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>
+                <span id="errorMessageText">There was an error submitting your application. Please try again.</span>
+            </div>
+
+            <form id="signupForm" action="process_signup.php" method="POST">
+                <input type="hidden" name="csrf_token" id="csrf_token" value="">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+234 XXX XXX XXXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location (City, Country) *</label>
+                    <input type="text" id="location" name="location" required placeholder="e.g., Lagos, Nigeria">
+                </div>
+
+                <div class="form-group">
+                    <label>Areas of Interest (Select all that apply) *</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests[]" value="tech_tools">
+                            <span>Tech & Tools - Create & Manage Digital Systems</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests[]" value="content_distribution">
+                            <span>Content Distribution - Share God's Word Online</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests[]" value="data_reports">
+                            <span>Data & Analytics - Track & Analyze Engagement</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests[]" value="training_support">
+                            <span>Training & Support - Teach & Help Volunteers</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Relevant Skills & Experience</label>
+                    <textarea id="experience" name="experience" placeholder="Share your relevant skills, experience, and why you're passionate about joining our mission..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="availability">Availability (hours per week)</label>
+                    <select id="availability" name="availability">
+                        <option value="">Select your availability...</option>
+                        <option value="1-5">1-5 hours</option>
+                        <option value="5-10">5-10 hours</option>
+                        <option value="10-20">10-20 hours</option>
+                        <option value="20+">20+ hours</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-button">Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="section-header">
+            <h2>Get in Touch</h2>
+            <p>Have questions? We're here to help</p>
+        </div>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                <h3>Email Us</h3>
+                <a href="/cdn-cgi/l/email-protection#7811161e17381c111f110c19140b190c0d0a190c111716561b1715"><span class="__cf_email__" data-cfemail="b8d1d6ded7f8dcd1dfd1ccd9d4cbd9cccdcad9ccd1d7d696dbd7d5">[email&#160;protected]</span></a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+                <h3>Call Us</h3>
+                <a href="tel:+2348104265077">+234 810 426 5077</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                <h3>Visit Website</h3>
+                <a href="http://www.digitalsaturation.org" target="_blank">www.digitalsaturation.org</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 DSS Digital Saturation - Technologies Unit. All rights reserved.</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Load CSRF token for form submission
+        fetch('get_csrf_token.php')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                var el = document.getElementById('csrf_token');
+                if (el && data.token) el.value = data.token;
+            })
+            .catch(function() {});
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation for checkboxes
+            const checkboxes = document.querySelectorAll('input[name="interests[]"]:checked');
+            if (checkboxes.length === 0) {
+                document.getElementById('errorMessageText').textContent = 'Please select at least one area of interest.';
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                return;
+            }
+            
+            const formData = new FormData(this);
+            
+            fetch('process_signup.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                return response.text().then(function(text) {
+                    try {
+                        return { ok: response.ok, data: JSON.parse(text) };
+                    } catch (err) {
+                        return { ok: false, data: { success: false, message: 'Invalid response from server. Please try again.' } };
+                    }
+                });
+            })
+            .then(function(result) {
+                var data = result.data;
+                if (result.ok && data && data.success) {
+                    document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('errorMessage').style.display = 'none';
+                    document.getElementById('signupForm').reset();
+                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(function() {
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 7000);
+                } else {
+                    document.getElementById('errorMessage').style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'none';
+                    document.getElementById('errorMessageText').textContent = (data && data.message) ? data.message : 'There was an error submitting your application.';
+                }
+            })
+            .catch(function() {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('errorMessageText').textContent = 'Network error. Please check your connection and try again.';
+            });
+        });
+
+        // Smooth scroll for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#signup').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Smart stats count-up: starts only when the stats section scrolls into view
+        (function() {
+            var DURATION_MS = 2000;
+            var NUMBERS_BEFORE = 5;
+            var statsSection = document.getElementById('statsSection');
+            var statEls = document.querySelectorAll('.stat-number[data-target]');
+            var hasRun = false;
+
+            function formatVal(current, suffix) {
+                return Math.round(current) + suffix;
+            }
+
+            function animateStat(el) {
+                var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+                var suffix = el.getAttribute('data-suffix') || '';
+                var start = Math.max(0, target - NUMBERS_BEFORE);
+                var startTime = null;
+
+                function step(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    var elapsed = timestamp - startTime;
+                    var progress = Math.min(elapsed / DURATION_MS, 1);
+                    progress = 1 - Math.pow(1 - progress, 2);
+                    var current = start + (target - start) * progress;
+                    el.textContent = formatVal(current, suffix);
+                    if (progress < 1) requestAnimationFrame(step);
+                }
+
+                requestAnimationFrame(step);
+            }
+
+            function runCountUp() {
+                if (hasRun) return;
+                hasRun = true;
+                statEls.forEach(animateStat);
+            }
+
+            if (typeof IntersectionObserver !== 'undefined' && statsSection) {
+                var obs = new IntersectionObserver(function(entries) {
+                    for (var i = 0; i < entries.length; i++) {
+                        if (entries[i].isIntersecting) {
+                            runCountUp();
+                            obs.disconnect();
+                            return;
+                        }
+                    }
+                }, { threshold: 0.25, rootMargin: '0px 0px 0px 0px' });
+                obs.observe(statsSection);
+            } else {
+                runCountUp();
+            }
+        })();
+    </script>
+</body>
+</html>
